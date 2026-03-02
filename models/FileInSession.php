@@ -123,11 +123,11 @@ class FileInSession extends \yii\base\Model
         $arrOut = [];
         if(isset($_FILES[$modelName]))
         {
-            $lstFuName = ($attributeNamePartTabularIndex == null)?$_FILES[$modelName]['name']:$_FILES[$modelName]['name'][$attributeNamePartTabularIndex];
-            $lstFuType = ($attributeNamePartTabularIndex == null)?$_FILES[$modelName]['type']:$_FILES[$modelName]['type'][$attributeNamePartTabularIndex];
-            $lstFuTmpName = ($attributeNamePartTabularIndex == null)?$_FILES[$modelName]['tmp_name']:$_FILES[$modelName]['tmp_name'][$attributeNamePartTabularIndex];
-            $lstFuError = ($attributeNamePartTabularIndex == null)?$_FILES[$modelName]['error']:$_FILES[$modelName]['error'][$attributeNamePartTabularIndex];
-            $lstFuSize = ($attributeNamePartTabularIndex == null)?$_FILES[$modelName]['size']:$_FILES[$modelName]['size'][$attributeNamePartTabularIndex];
+            $lstFuName = ($attributeNamePartTabularIndex == null)?$_FILES[$modelName]['name']:($_FILES[$modelName]['name'][$attributeNamePartTabularIndex] ?? []);
+            $lstFuType = ($attributeNamePartTabularIndex == null)?$_FILES[$modelName]['type']:($_FILES[$modelName]['type'][$attributeNamePartTabularIndex] ?? []);
+            $lstFuTmpName = ($attributeNamePartTabularIndex == null)?$_FILES[$modelName]['tmp_name']:($_FILES[$modelName]['tmp_name'][$attributeNamePartTabularIndex] ?? []);
+            $lstFuError = ($attributeNamePartTabularIndex == null)?$_FILES[$modelName]['error']:($_FILES[$modelName]['error'][$attributeNamePartTabularIndex] ?? []);
+            $lstFuSize = ($attributeNamePartTabularIndex == null)?$_FILES[$modelName]['size']:($_FILES[$modelName]['size'][$attributeNamePartTabularIndex] ?? []);
 
             for($k=0;$k<count($lstFuTmpName);$k++)
             {
