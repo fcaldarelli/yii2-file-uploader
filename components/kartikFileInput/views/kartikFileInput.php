@@ -48,7 +48,8 @@ foreach($filesInSession as $fis)
         'type' => $previewType,
         'caption' => $fis->fileName,
         'size' => $fis->fileSize,
-        'url' => \yii\helpers\Url::to([$moduleId.'/file-in-session/delete', 'model' => $fis->modelName, 'attr' => $fis->attributeName, 'name' => $fis->fileName, 'psk' => $prefixSessionKey], true)
+        'url' => \yii\helpers\Url::to([$moduleId.'/file-in-session/delete'], true),
+        'extra' => ['model' => $fis->modelName, 'attr' => $fis->attributeName, 'name' => $fis->fileName, 'psk' => $prefixSessionKey]
    ];
 }
 ?>
@@ -81,7 +82,9 @@ echo \kartik\file\FileInput::widget([
         'initialPreview'=> $initialPreview,
         'initialPreviewAsData'=>true,
         'initialPreviewConfig' => $initialPreviewConfig,
-
+        'ajaxDeleteSettings' => [
+            'type' => 'GET', // Overrides the default POST method
+        ],
     ],
 ]);
 ?>
